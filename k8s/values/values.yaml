@@ -1,5 +1,5 @@
 global:
-  domain: synth-cloud.alice-platform.com
+  domain: synth-cloud.alicelaw.net
 frontend:
   replicas: 2
   image: synth-cloud/frontend:latest
