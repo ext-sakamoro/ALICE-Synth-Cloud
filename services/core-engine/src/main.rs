@@ -157,9 +157,7 @@ async fn handle_compress(
     }))
 }
 
-async fn handle_presets(
-    State(_state): State<Arc<AppState>>,
-) -> Json<PresetsResponse> {
+async fn handle_presets(State(_state): State<Arc<AppState>>) -> Json<PresetsResponse> {
     let presets = vec![
         Preset {
             id: "sine".into(),
@@ -300,6 +298,8 @@ async fn main() {
     let addr: SocketAddr = addr_str.parse().expect("invalid SYNTH_ADDR");
 
     info!("ALICE Synth Engine listening on {}", addr);
-    let listener = tokio::net::TcpListener::bind(addr).await.expect("bind failed");
+    let listener = tokio::net::TcpListener::bind(addr)
+        .await
+        .expect("bind failed");
     axum::serve(listener, app).await.expect("server error");
 }
